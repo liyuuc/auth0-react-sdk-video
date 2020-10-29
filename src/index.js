@@ -4,10 +4,13 @@ import App from "./app";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./index.css";
+import Auth0ProviderWithHistory from "./AuthProviderWithHistory";
 
 ReactDOM.render(
   <Router>
-    <App />
+    <Auth0ProviderWithHistory>
+      <App />
+    </Auth0ProviderWithHistory>
   </Router>,
   document.getElementById("root")
 );

@@ -1,10 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const jwt = require("express-jwt");
-const jwksRsa = require("jwks-rsa");
-const { resolve } = require("path");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import helmet from "helmet";
+import jwt from "express-jwt";
+import { expressJwtSecret } from "jwks-rsa";
+import { resolve } from "path";
 
 require("dotenv").config({
   path: resolve(process.cwd(), "src", "server", ".env"),
@@ -26,7 +26,7 @@ app.use(helmet());
 app.use(cors({ origin: appOrigin }));
 
 const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
+  secret: expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
